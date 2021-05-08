@@ -1,11 +1,11 @@
 
-var firebaseConfig = {
-    apiKey: "AIzaSyBPYtbGHUFoQneYcQwlR2vmCSVq3Wwk_bE",
-    authDomain: "medicina-app-3ef15.firebaseapp.com",
-    projectId: "medicina-app-3ef15",
-    storageBucket: "medicina-app-3ef15.appspot.com",
-    messagingSenderId: "202829388483",
-    appId: "1:202829388483:web:11b84fdecab620a369a076"
+  var firebaseConfig = {
+    apiKey: "AIzaSyBpJPMXBy22M_aIQWttKBgKuqw98OfdzAQ",
+    authDomain: "proyecto-react-14f2e.firebaseapp.com",
+    projectId: "proyecto-react-14f2e",
+    storageBucket: "proyecto-react-14f2e.appspot.com",
+    messagingSenderId: "226143137508",
+    appId: "1:226143137508:web:389f85f97925f664cfc6f1"
   };
   // Initialize Firebase
 //const firebaseConfigApp = firebase.initializeApp(firebaseConfig);

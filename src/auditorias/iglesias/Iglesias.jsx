@@ -24,7 +24,7 @@ const Iglesias = ()=> {
             setIglesias(datosIgle)
         }
 
-        traerDatos()
+        traerDatos() 
 
     }, [refFire])
 
