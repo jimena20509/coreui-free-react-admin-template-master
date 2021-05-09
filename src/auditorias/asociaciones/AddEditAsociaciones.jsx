@@ -7,12 +7,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 const schema = yup.object().shape({
     nombre: yup.string().required('Es requerido'),
     codigo: yup.string(),
-    presidente: yup.string(),
-    pais: yup.string(),
+    zona: yup.string(),
+    union_id: yup.string(),
+    tesorero: yup.string(),
   });
 
 
-const AddEditUnion = ({history})=> {
+const AddEditAsociaciones = ({history})=> {
 
 
     const { register, handleSubmit, formState:{ errors } } = useForm({
@@ -24,7 +25,7 @@ const AddEditUnion = ({history})=> {
     }
 
     const onCancelar = ()=> {
-        history.push('/uniones')
+        history.push('/asociaciones')
     }
 
     return (
@@ -44,13 +45,18 @@ const AddEditUnion = ({history})=> {
                     </div>
                     <div className="input-gruop">
                             
-                        <label>Presidente</label>
-                        <input className="form-control" {...register('presidente')} />
+                        <label>Zona</label>
+                        <input className="form-control" {...register('zona')} />
                     </div>
                     <div className="input-gruop">
                             
-                        <label>País</label>
-                        <input className="form-control" {...register('pais')} />
+                        <label>Unión_id</label>
+                        <input className="form-control" {...register('union_id')} />
+                    </div>
+                    <div className="input-gruop">
+                            
+                        <label>Tesorero</label>
+                        <input className="form-control" {...register('tesorero')} />
                     </div>
 
                     <button className="btn btn-primary" type="submit">Guardar</button>
@@ -61,4 +67,4 @@ const AddEditUnion = ({history})=> {
     )
 }
 
-export default AddEditUnion
+export default AddEditAsociaciones

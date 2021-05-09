@@ -1,37 +1,25 @@
 import { useFirestore } from 'reactfire'
 import { useEffect, useState } from 'react'
 import 'firebase/firestore'
-import { Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import UnionesTable from './UnionesTable';
+import AddEditUnion from './AddEditUnion';
 
 const Uniones = ({history})=> {
 
     const refFire = useFirestore();
-    const [uniones, setUniones] = useState([])
 
-
-    useEffect(() => {
-
-        const traerDatos = async () => {
-            const datosUniones = []
-            const snapshots = await refFire.collection('uniones').get();
-            snapshots.docs.forEach(snap => {
-                datosUniones.push({
-                    id: snap.doc.id,
-                    ...snap.doc.data()
-                })
-            })
-            setUniones(datosUniones)
-        }
-
-        traerDatos()
-
-    }, [refFire])
 
     return (
         <Switch>
-            <Route path="uniones">
+            <Route exact path="/uniones">
                 <UnionesTable />
+            </Route>
+            <Route path="/uniones/add">
+                <AddEditUnion />
+            </Route>
+            <Route path="/uniones/edit/:id">
+                <AddEditUnion />
             </Route>
         </Switch>
     )
