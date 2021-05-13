@@ -1,12 +1,10 @@
 import { useFirestore } from 'reactfire'
-import { useEffect, useState } from 'react'
 import 'firebase/firestore'
 import { Route, Switch } from 'react-router-dom';
-import AddEditUnion from './AddEditUnion';
 import AsociacionesTable from './AsociacionesTable';
 import AddEditAsociaciones from './AddEditAsociaciones';
 
-const Asociaciones = ({history})=> {
+const Asociaciones = ()=> {
 
     const refFire = useFirestore();
 

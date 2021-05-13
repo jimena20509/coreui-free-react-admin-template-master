@@ -16,8 +16,8 @@ const UnionesTable = ({history})=> {
             const snapshots = await refFire.collection('uniones').get();
             snapshots.docs.forEach(snap => {
                 datosUniones.push({
-                    id: snap.doc.id,
-                    ...snap.doc.data()
+                    id: snap.id,
+                    ...snap.data()
                 })
             })
             setUniones(datosUniones)

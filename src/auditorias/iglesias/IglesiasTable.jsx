@@ -53,7 +53,7 @@ const IglesiasTable = ({history})=> {
                                     index + 1
                                 }</td>
                                 <td>{
-                                    asociiglesiasaciones.nombre
+                                    iglesias.nombre
                                 }</td>
                                 <td>{
                                     iglesias.codigo

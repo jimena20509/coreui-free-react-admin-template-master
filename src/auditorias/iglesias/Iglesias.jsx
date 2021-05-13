@@ -1,5 +1,4 @@
 import { useFirestore } from 'reactfire'
-import { useEffect, useState } from 'react'
 import 'firebase/firestore'
 import { Route, Switch } from 'react-router-dom';
 import IglesiasTable from './IglesiasTable';
