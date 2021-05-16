@@ -35,7 +35,7 @@ const schema = yup.object().shape({
         console.log(datos)
         await refFirestore.doc().set(datos)
         toast('Unión Creada.')
-        history.push('/uniones')
+        history.push('./uniones')
 
     }
 
@@ -55,7 +55,7 @@ const schema = yup.object().shape({
         const traerDatos = async ()=> {
             const res = await (await refFirestore.doc(id).get()).data()
             const fields = ['nombre', 'codigo', 'presidente', 'pais']
-            fields.forEach(field = setValue(field, res[field]))
+            fields.forEach(field => setValue(field, res[field]))
         }
 
         if (!isAddMode) {
@@ -92,7 +92,7 @@ const schema = yup.object().shape({
                     <button className="btn btn-primary" type="submit">Guardar</button>
                     <button className="btn btn-warning" type="button" onClick={() => onCancelar()}>Cancelar</button>
                 </form>
-            </div>
+            </div> 
         </div>
     )
 }
