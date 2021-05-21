@@ -14,6 +14,7 @@ const AsociacionesTable = React.lazy(() => import('./asociaciones/AsociacionesTa
 const AddEditDistritos = React.lazy(() => import('./distritos/AddEditDistritos'));
 const Distritos = React.lazy(() => import('./distritos/Distritos'));
 const DistritosTable = React.lazy(() => import('./distritos/DistritosTable'));
+const Auditorias = React.lazy(() => import('./auditorias/Auditorias'));
 
 const routes = [
   { path: '/', exact: true, name: 'Inico' },
@@ -30,7 +31,8 @@ const routes = [
   { path: '/asociaciones/edit/:id', exact: true, name: 'Editar Unión', component: AddEditAsociaciones },
   { path: '/distritos', exact: true, name: 'Uniones', component: Distritos },
   { path: '/distritos/add', exact: true, name: 'Añadir Unión', component: AddEditDistritos },
-  { path: '/distritos/edit/:id', exact: true, name: 'Editar Unión', component: AddEditDistritos }
+  { path: '/distritos/edit/:id', exact: true, name: 'Editar Unión', component: AddEditDistritos },
+  { path: '/auditorias', exact: true, name: ' Auditorias', component: Auditorias }
 ];
 
 export default routes;
