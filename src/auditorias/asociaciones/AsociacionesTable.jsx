@@ -1,6 +1,6 @@
 import { useFirestore } from 'reactfire'
 import { useEffect, useState } from 'react'
-import 'firebase/firestore'
+import 'firebase/firestore';
 import { Link } from 'react-router-dom';
 
 const AsociacionesTable = ({history})=> {

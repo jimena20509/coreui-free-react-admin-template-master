@@ -23,7 +23,7 @@ const schema = yup.object().shape({
         resolver: yupResolver(schema)
     })
 
-    const refFirestore = useFirestore().collection('uniones');
+    const refFire = useFirestore().collection('uniones');
 
     const onSubmit =  (datos)=> {
         return isAddMode
@@ -33,15 +33,15 @@ const schema = yup.object().shape({
 
     const crear = async (datos) => {
         console.log(datos)
-        await refFirestore.doc().set(datos)
+        await refFire.doc().set(datos)
         toast('Unión Creada.')
-        history.push('./uniones')
+        history.push('/uniones')
 
     }
 
     const actualizar = async (datos) => {
         console.log(datos)
-        await refFirestore.doc(id).set(datos)
+        await refFire.doc(id).set(datos)
         toast('Unión Modificada.')
         history.push('/uniones')
 
@@ -53,7 +53,7 @@ const schema = yup.object().shape({
 
     useEffect(() => {
         const traerDatos = async ()=> {
-            const res = await (await refFirestore.doc(id).get()).data()
+            const res = await (await refFire.doc(id).get()).data()
             const fields = ['nombre', 'codigo', 'presidente', 'pais']
             fields.forEach(field => setValue(field, res[field]))
         }
@@ -61,7 +61,7 @@ const schema = yup.object().shape({
         if (!isAddMode) {
             traerDatos()
         }
-    }, [refFirestore, setValue, isAddMode, id])
+    }, [refFire, setValue, isAddMode, id])
 
     return (
         <div className="card">
@@ -89,7 +89,7 @@ const schema = yup.object().shape({
                         <input className="form-control" {...register('pais')} />
                     </div>
 
-                    <button className="btn btn-primary" type="submit">Guardar</button>
+                    <button className="btn btn-primary" type="submit" onClick={() => crear()}>Guardar</button>
                     <button className="btn btn-warning" type="button" onClick={() => onCancelar()}>Cancelar</button>
                 </form>
             </div> 

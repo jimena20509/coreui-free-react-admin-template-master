@@ -1,29 +1,35 @@
-import { useEffect, useState} from 'react'
-import { useFirestore } from 'reactfire'
+import { useEffect, useState} from 'react';
+import { useFirestore } from 'reactfire';
+import { Link } from 'react-router-dom';
 
 
 const Auditorias = () => {
 
-    const reFirestore = useFirestore();
+    const refFire = useFirestore();
+    const [auditorias, setAuditorias] = useState([])
 
     useEffect(() =>{
         const traerDatos = async () => {
             const temporales = []
-            const snapshot = await useFirestore.collection('auditorias').get
+            const snapshot = await refFire.collection('auditorias').get()
             snapshot.docs.forEach((doc)=>{
                 const elem = {
-                    doc.id,
+                    id: doc.id,
                     ...doc.data()
                 }
+                temporales.push(elem)
             })
-
+            setAuditorias(temporales)
         }
-    }, [])
+
+        traerDatos()
+    }, [refFire])
 
     return (
         <div className="card">
             <div className="card-body">
-                <h2 className="card-title">Uniones</h2>
+                <h2 className="card-title">Auditoria </h2>
+                <Link className="btn btn-primary" to="/auditorias/add">Crear</Link>
 
                     <table className="table table-striped table-sm">
                         <thead>
@@ -37,12 +43,17 @@ const Auditorias = () => {
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            {
+                                auditorias.map((audit, index) => (
+                                    <tr key ={audit.id}>
+                                        <td>{index + 1}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                ))
+                            }
                         </tbody>
                     </table>
             </div>
