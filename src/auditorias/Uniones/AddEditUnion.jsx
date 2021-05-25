@@ -89,7 +89,7 @@ const schema = yup.object().shape({
                         <input className="form-control" {...register('pais')} />
                     </div>
 
-                    <button className="btn btn-primary" type="submit" onClick={() => crear()}>Guardar</button>
+                    <button className="btn btn-primary" type="submit">Guardar</button>
                     <button className="btn btn-warning" type="button" onClick={() => onCancelar()}>Cancelar</button>
                 </form>
             </div> 

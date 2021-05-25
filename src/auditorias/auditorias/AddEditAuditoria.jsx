@@ -37,14 +37,14 @@ const AddEditAuditoria = ({history})=> {
 
     const crear = async (datos) => {
         console.log(datos)
-        await refFire.doc().set(datos)
+        await refFire.collection('auditorias').doc().set(datos)
         toast('Auditoria Creada.')
         history.push('/auditorias')
 
     }
 
     const onSubmit = (datos)=> {
-        console.log(datos)
+        crear(datos)
     }
 
     const onCancelar = ()=> {
@@ -105,7 +105,7 @@ const AddEditAuditoria = ({history})=> {
                         />}
                     />
 
-                    <button className="btn btn-primary" type="submit" onClick={() => crear()}>Guardar</button>
+                    <button className="btn btn-primary" type="submit" >Guardar</button>
                     <button className="btn btn-warning" type="button" onClick={() => onCancelar()}>Cancelar</button>
                 </form>
             </div>

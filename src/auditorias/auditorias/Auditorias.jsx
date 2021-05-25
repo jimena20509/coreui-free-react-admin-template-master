@@ -1,9 +1,10 @@
 import { useEffect, useState} from 'react';
 import { useFirestore } from 'reactfire';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
-const Auditorias = () => {
+const Auditorias = ({history}) => {
 
     const refFire = useFirestore();
     const [auditorias, setAuditorias] = useState([])
@@ -20,10 +21,29 @@ const Auditorias = () => {
                 temporales.push(elem)
             })
             setAuditorias(temporales)
-        }
+        } 
 
         traerDatos()
     }, [refFire])
+    
+    const eliminar = async (id) => {
+        const respuesta = window.confirm('Seguro que quiere eliminar?');
+        if (respuesta) {
+            await refFire.collection('auditorias').doc(id).delete();
+            toast('Eliminado')
+            const temp = auditorias.filter((auditorias)=> {
+                console.log(auditorias, id)
+                return auditorias.id !== id
+            })
+            setAuditorias(temp)
+            
+        }
+    }
+
+    const setActual = async(id) => {
+        await refFire.collection('auditorias').doc(id).update({actual: true})
+        console.log('Actualizado')
+    }
 
     return (
         <div className="card">
@@ -38,6 +58,7 @@ const Auditorias = () => {
                                 <th>Fecha</th>
                                 <th>Iglesia</th>
                                 <th>Actual</th>
+                                <th>Activo</th>
                                 <th>Editar</th>
                             </tr>
                         </thead>
@@ -47,9 +68,30 @@ const Auditorias = () => {
                                 auditorias.map((audit, index) => (
                                     <tr key ={audit.id}>
                                         <td>{index + 1}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{audit.fecha}</td>
+                                        <td>{audit.iglesia.nombre}</td>
+                                        <td>
+                                            {audit.actual } 
+                                            ?
+                                                'Actual'
+                                            :
+                                            <button onClick={()=> setActual(audit.id)} className="btn  btn-primary btn-xm" >
+                                                Poner como actual
+                                            </button>
+
+                                        </td>
+                                        <td>{audit.activo ? 'Si' : 'No'}</td>
+                                        <td>
+                                            <button onClick={ () => {
+                                                history.push(`/auditorias/edit/${audit.id}`)
+                                            }} 
+                                            className="btn btn-success btn-sm">
+                                                <i className ="cil-peniel"></i>
+                                            </button>
+                                            <button onClick={() => eliminar(audit.id)} className="btn btn-danger btn-sm"> 
+                                                <i className="cil-trash"></i>    
+                                            </button>
+                                        </td>
                                     </tr>
 
                                 ))
