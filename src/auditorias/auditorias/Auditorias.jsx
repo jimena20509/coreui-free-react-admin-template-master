@@ -41,8 +41,15 @@ const Auditorias = ({history}) => {
     }
 
     const setActual = async(id) => {
-        await refFire.collection('auditorias').doc(id).update({actual: true})
-        console.log('Actualizado')
+        let batch = refFire.batch();
+        auditorias.forEach( (audit) => {
+            let elem = refFire.collection('auditorias').doc(audit.id)
+            const actual = audit.id == id ? true : false;
+            batch.update(elem, { actual})
+        })
+        await batch.commit();
+        // await refFire.collection('auditorias').doc(id).update({actual: true})
+        toast('Actualizado')
     }
 
     return (
@@ -69,16 +76,16 @@ const Auditorias = ({history}) => {
                                     <tr key ={audit.id}>
                                         <td>{index + 1}</td>
                                         <td>{audit.fecha}</td>
-                                        <td>{audit.iglesia.nombre}</td>
+                                        <td>{}</td>
                                         <td>
-                                            {audit.actual } 
+                                            {audit.actual 
                                             ?
                                                 'Actual'
                                             :
                                             <button onClick={()=> setActual(audit.id)} className="btn  btn-primary btn-xm" >
                                                 Poner como actual
                                             </button>
-
+                                            }
                                         </td>
                                         <td>{audit.activo ? 'Si' : 'No'}</td>
                                         <td>
