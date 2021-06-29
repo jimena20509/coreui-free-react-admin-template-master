@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import 'firebase/firestore'
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { FaPen, FaTrash} from 'react-icons/fa';
 
 const Asociaciones = ({history})=> {
 
@@ -88,10 +89,10 @@ const Asociaciones = ({history})=> {
                                         history.push(`/asociaciones/edit/${asoci.id}`)
                                     }} 
                                     className="btn btn-success btn-sm">
-                                        <i className ="cil-peniel"></i>
+                                        <FaPen />
                                     </button>
                                     <button onClick={() => eliminar(asoci.id)} className="btn btn-danger btn-sm"> 
-                                        <i className="cil-trash"></i>    
+                                        <FaTrash />    
                                     </button>
                                 </td>
                             </tr>
