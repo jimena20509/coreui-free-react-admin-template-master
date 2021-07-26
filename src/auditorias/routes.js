@@ -14,7 +14,7 @@ const AddEditDistritos = React.lazy(() => import('./distritos/AddEditDistritos')
 const Distritos = React.lazy(() => import('./distritos/Distritos'));
 const Auditorias = React.lazy(() => import('./auditorias/Auditorias'));
 const AddEditAuditoria = React.lazy(() => import('./auditorias/AddEditAuditoria'));
-const DatosAuditorias = React.lazy(() => import('./datosAuditorias/Datos'));
+const DatosAuditorias = React.lazy(() => import('./datosAuditorias/DatosAuditoria'));
 
 const routes = [
   { path: '/', exact: true, name: 'Inico' },
